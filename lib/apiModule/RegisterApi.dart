@@ -19,11 +19,11 @@ class RegisterApi {
 
     print('base url: $response');
 
-    print('login api statuscode: ${response.statusCode}');
+    print('register api statuscode: ${response.statusCode}');
     if (response.statusCode == 200) {
       var jsonString = response.body;
 
-      return loginModelFromJson(jsonString);
+      return registerModelFromJson(jsonString);
     }
   }
 }

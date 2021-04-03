@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:jaa_taa/commonComponet/AppColors.dart';
+import 'package:jaa_taa/controller/RegisterController.dart';
 import 'package:jaa_taa/view/HomeScreen.dart';
 
 class Signup extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
+  RegisterController registerController = Get.put(RegisterController());
 
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
       body: (Stack(
         children: [
@@ -33,9 +33,9 @@ class Signup extends StatelessWidget {
                       Container(
                         height: 50,
                         margin:
-                        EdgeInsets.only(left: 40.0, right: 40.0, top: 20.0),
+                            EdgeInsets.only(left: 40.0, right: 40.0, top: 20.0),
                         child: TextFormField(
-                          // controller: loginController.emailTextController,
+                            controller: registerController.nameTextController,
                             decoration: InputDecoration(
                               hintText: 'Name',
                               labelText: 'Enter Name',
@@ -47,8 +47,8 @@ class Signup extends StatelessWidget {
                                 fontStyle: FontStyle.normal,
                               ),
                               border: OutlineInputBorder(
-                                  borderSide:
-                                  new BorderSide(color: AppColors.themeColor)),
+                                  borderSide: new BorderSide(
+                                      color: AppColors.themeColor)),
                             )),
                       ),
 
@@ -56,10 +56,10 @@ class Signup extends StatelessWidget {
                       Container(
                         height: 50,
                         margin:
-                        EdgeInsets.only(left: 40.0, right: 40.0, top: 20.0),
+                            EdgeInsets.only(left: 40.0, right: 40.0, top: 20.0),
                         child: TextFormField(
-                          //  controller: loginController.passwordTextController,
-                            obscureText: true,
+                            controller: registerController.mobileTextController,
+                            keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               hintText: 'Mobile',
                               labelText: 'Enter Mobile',
@@ -79,9 +79,9 @@ class Signup extends StatelessWidget {
                       Container(
                         height: 50,
                         margin:
-                        EdgeInsets.only(left: 40.0, right: 40.0, top: 20.0),
+                            EdgeInsets.only(left: 40.0, right: 40.0, top: 20.0),
                         child: TextFormField(
-                          // controller: loginController.emailTextController,
+                            controller: registerController.emailTextController,
                             decoration: InputDecoration(
                               hintText: 'Email',
                               labelText: 'Enter Email',
@@ -93,8 +93,8 @@ class Signup extends StatelessWidget {
                                 fontStyle: FontStyle.normal,
                               ),
                               border: OutlineInputBorder(
-                                  borderSide:
-                                  new BorderSide(color: AppColors.themeColor)),
+                                  borderSide: new BorderSide(
+                                      color: AppColors.themeColor)),
                             )),
                       ),
 
@@ -102,9 +102,10 @@ class Signup extends StatelessWidget {
                       Container(
                         height: 50,
                         margin:
-                        EdgeInsets.only(left: 40.0, right: 40.0, top: 20.0),
+                            EdgeInsets.only(left: 40.0, right: 40.0, top: 20.0),
                         child: TextFormField(
-                          //  controller: loginController.passwordTextController,
+                            controller:
+                                registerController.passwordTextController,
                             obscureText: true,
                             decoration: InputDecoration(
                               hintText: 'Password',
@@ -149,10 +150,7 @@ class Signup extends StatelessWidget {
                             shape: RoundedRectangleBorder(
                                 borderRadius: new BorderRadius.circular(6.0)),
                             onPressed: () {
-                              if (_formKey.currentState.validate()) {
-                                //loginController.getLoginFormValue();
-
-                              }
+                              if (_formKey.currentState.validate()) {}
 
                               // Get.offAll(HomePage());
 
@@ -182,15 +180,13 @@ class Signup extends StatelessWidget {
                                 borderRadius: new BorderRadius.circular(6.0)),
                             onPressed: () {
                               if (_formKey.currentState.validate()) {
-                                //loginController.getLoginFormValue();
-
+                                registerController.getRegister();
                               }
 
                               // Get.offAll(HomePage());
 
                               // print('Email: '+.text+" "+'Password: '+_passwordTextController.text);
                             }),
-
                       ],
                     ),
                   ],
@@ -201,6 +197,5 @@ class Signup extends StatelessWidget {
         ],
       )),
     );
-
   }
 }

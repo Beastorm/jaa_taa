@@ -21,23 +21,22 @@ class LoginController extends GetxController {
     print(
         'Email ${emailTextController.text}, Password ${passwordTextController.text}');
 
-
-    var loginResponse = await LoginApi.login(emailTextController.text.trim(), passwordTextController.text.trim());
+    var loginResponse = await LoginApi.login(
+        emailTextController.text.trim(), passwordTextController.text.trim());
 
     print('login controller response: ${loginResponse.response}');
     if (loginResponse != null) {
-
       if (loginResponse.response == 'True') {
-        // String schoolId = loginResponse.data[0];
-        // String teacherId =  loginResponse.data[0].id;
-        // String name = loginResponse.data[0].name;
-        // String email = loginResponse.data[0].email;
-        //
-        // box.write('loginStatus', 'true');
-        // box.write('schoolId', schoolId);
-        // box.write('teacherId', teacherId);
-        // box.write('name', name);
-        // box.write('email', email);
+        String userId = loginResponse.data.id;
+        String mobile = loginResponse.data.mobile;
+        String name = loginResponse.data.name;
+        String email = loginResponse.data.email;
+
+        box.write('loginStatus', 'true');
+        box.write('userId', userId);
+        box.write('mobile', mobile);
+        box.write('name', name);
+        box.write('email', email);
         //
         // print('Teacherid: $teacherId');
         print('user id ${loginResponse.data.id}');
@@ -47,7 +46,6 @@ class LoginController extends GetxController {
       } else {
         MySnackbar.errorSnackBar(
             'Login failed', 'Please check the credentials');
-
       }
     }
   }
