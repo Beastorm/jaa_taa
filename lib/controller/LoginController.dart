@@ -27,10 +27,12 @@ class LoginController extends GetxController {
     print('login controller response: ${loginResponse.response}');
     if (loginResponse != null) {
       if (loginResponse.response == 'True') {
-        String userId = loginResponse.data.id;
+        String userId = loginResponse.data.userid;
         String mobile = loginResponse.data.mobile;
         String name = loginResponse.data.name;
         String email = loginResponse.data.email;
+
+        print('userid: $userId, mobile: $mobile, name: $name, email: $email');
 
         box.write('loginStatus', 'true');
         box.write('userId', userId);

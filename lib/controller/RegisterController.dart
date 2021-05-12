@@ -27,6 +27,7 @@ class RegisterController extends GetxController {
     print('Name ${nameTextController.text}, Mobile ${mobileTextController.text}'
         'Email ${emailTextController.text}, Password ${passwordTextController.text}');
 
+
     var response = await RegisterApi.register(
         nameTextController.text.trim(),
         mobileTextController.text.trim(),

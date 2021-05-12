@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jaa_taa/commonComponet/AppColors.dart';
-import 'package:jaa_taa/controller/PostListController.dart';
+import 'package:jaa_taa/controller/SavePostController.dart';
 
 import 'PostDetails.dart';
 
-class AdsScreen extends StatelessWidget {
-  PostListController postListController = Get.put(PostListController());
+class ViewSavePost extends StatelessWidget {
+  SavePostController savePostController = Get.put(SavePostController());
+
   @override
   Widget build(BuildContext context) {
     return
 
       Scaffold(
-        appBar: AppBar(title: Text('My Post')),
-        body:
-
-        LimitedBox(
+        appBar: AppBar(
+          title: Text('Favourite post'),
+        ),
+        body: LimitedBox(
           maxHeight: double.infinity,
-          child: GetX<PostListController>(initState: (context) {
-            postListController.fetchMyPosts();
+          child: GetX<SavePostController>(initState: (context) {
+            savePostController.fetchFavPosts();
           }, builder: (controller) {
             if (controller.isLoading.value) {
               return Center(child: CircularProgressIndicator());
@@ -32,7 +32,8 @@ class AdsScreen extends StatelessWidget {
                       return Card(
                         child: ListTile(
                           onTap: () {
-                            Get.to(PostDetails(controller.postList[index].pid, controller.postList[index].uid));
+                            Get.to(PostDetails(controller.postList[index].pid,
+                                controller.postList[index].uid));
                           },
                           title: Container(
                             margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
@@ -41,14 +42,17 @@ class AdsScreen extends StatelessWidget {
                               children: [
                                 Row(
                                   children: [
-                                    Image.network(controller.postList[index].image,
-                                        width: 120, height: 100, fit: BoxFit.fill),
+                                    Image.network(
+                                        controller.postList[index].image,
+                                        width: 120,
+                                        height: 100,
+                                        fit: BoxFit.fill),
                                     Container(
-                                      margin:
-                                      EdgeInsets.only(left: 10.0, bottom: 15.0),
+                                      margin: EdgeInsets.only(
+                                          left: 10.0, bottom: 15.0),
                                       child: Column(
                                         crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                            CrossAxisAlignment.start,
                                         children: [
                                           SizedBox(height: 10.0),
                                           Text(
@@ -59,7 +63,8 @@ class AdsScreen extends StatelessWidget {
                                           ),
                                           SizedBox(height: 10.0),
                                           Text(
-                                            controller.postList[index].description
+                                            controller
+                                                .postList[index].description
                                                 .toString(),
                                             maxLines: 2,
                                             style: TextStyle(fontSize: 15.0),
@@ -77,6 +82,23 @@ class AdsScreen extends StatelessWidget {
                                     ),
                                   ],
                                 ),
+                                GestureDetector(
+                                  onTap: (){
+                                    savePostController.deleteSavePost(controller.postList[index].id);
+                                    // ignore: unnecessary_statements
+                                    controller.postList.removeAt(index).id;
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Text('Delete', style: TextStyle(color: Colors.red),),
+                                        Icon(Icons.delete_forever, color: Colors.red,)
+                                      ],
+                                    ),
+                                  ),
+                                )
                               ],
                             ),
                           ),
@@ -86,7 +108,6 @@ class AdsScreen extends StatelessWidget {
               );
             }
           }),
-        ),
-      );
+        ));
   }
 }

@@ -83,7 +83,7 @@ class _PagesScreenState extends State<PagesScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.add_circle_outline, color: Colors.red, size: 30),
             title: Text(
-              '',
+              'Add post',
               style: TextStyle(
                   color: _selectedIndex == 2 ? Colors.white : Colors.blueGrey),
             ),

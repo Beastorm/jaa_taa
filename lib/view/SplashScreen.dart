@@ -7,6 +7,7 @@ import 'package:jaa_taa/commonComponet/AppColors.dart';
 import 'package:jaa_taa/view/HomeScreen.dart';
 import 'package:jaa_taa/view/IntroScreen.dart';
 import 'package:jaa_taa/view/LoginScreen.dart';
+import 'package:jaa_taa/view/Pages.dart';
 
 class SplashScreen extends StatelessWidget {
   final box = GetStorage();
@@ -15,12 +16,27 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String loginStatus = box.read('loginStatus');
+    // String userId = box.read('userId');
+    // String name = box.read('name');
+    // String mobile = box.read('mobile');
+    // String email = box.read('email');
+
+
+    // box.write('loginStatus', 'true');
+    // box.write('userId', userId);
+    // box.write('mobile', mobile);
+    // box.write('name', name);
+    // box.write('email', email);
 
     Timer(Duration(seconds: 4), () {
-      if (loginStatus == 'true') {
-        Get.offAll(HomeScreen());
+      print('Loginstatus : $loginStatus');
+      // print('userid : $userId');
+      // print('name : $name');
+
+     if (loginStatus == null) {
+        Get.offAll(IntroScreen());
       } else {
-        Get.offAll(LoginScreen());
+        Get.offAll(PagesScreen());
       }
     });
 
@@ -40,7 +56,7 @@ class SplashScreen extends StatelessWidget {
                   width: 120.0,
                   height: 110.0,
                 ),
-                Text('JAA-TAA',
+                Text('Jaa-Taa',
                     style: TextStyle(
                         fontSize: 20.0,
                         color: AppColors.white,

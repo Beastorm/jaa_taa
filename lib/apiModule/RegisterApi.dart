@@ -11,10 +11,10 @@ class RegisterApi {
     var baseUrl = GlobalConfiguration().get('base_url');
 
     var response = await client.post('${baseUrl}register.php', body: {
-      'name': name,
-      'mobile': mobile,
-      'email': email,
-      'password': password
+        'name': name,
+        'mobile': mobile,
+        'email': email,
+        'password': password
     });
 
     print('base url: $response');
