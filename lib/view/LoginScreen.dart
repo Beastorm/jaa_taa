@@ -152,18 +152,6 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 30),
-                RaisedButton(
-                  elevation: 0,
-                  color: AppColors.white,
-                  child: Text(
-                    'Home (Demo button)',
-                    style: TextStyle(fontWeight: FontWeight.w100),
-                  ),
-                  onPressed: () {
-                    Get.to(PagesScreen());
-                  },
-                )
               ],
             ),
           ),

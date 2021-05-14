@@ -2,6 +2,7 @@ import 'package:global_configuration/global_configuration.dart';
 import 'package:http/http.dart' as http;
 import 'package:jaa_taa/model/AddChatModel.dart';
 import 'package:jaa_taa/model/ChatListModel.dart';
+import 'package:jaa_taa/model/ChatListPerson.dart';
 
 class ChatListAPi {
   static var client = http.Client();
@@ -38,4 +39,24 @@ class ChatListAPi {
       return addChatModelFromJson(jsonString);
     }
   }
+
+
+  static Future<List<DatumChatListPerson>> viewChatListPerson(String userId) async {
+
+    var baseUrl = GlobalConfiguration().get('base_url');
+
+    var response = await client.post('${baseUrl}chatList.php', body:{'uid':userId});
+
+    print('base url: $response');
+
+    print('view api statuscode: ${response.statusCode}');
+    if(response.statusCode == 200){
+
+      var jsonString = response.body;
+
+      return chatPersonListModelFromJson(jsonString).data;
+    }
+  }
+
+
 }

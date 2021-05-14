@@ -6,10 +6,12 @@ import 'package:get_storage/get_storage.dart';
 import 'package:jaa_taa/apiModule/ChatListApi.dart';
 import 'package:jaa_taa/commonComponet/MyAlertDialog.dart';
 import 'package:jaa_taa/model/ChatListModel.dart';
+import 'package:jaa_taa/model/ChatListPerson.dart';
 
 class ChatController extends GetxController {
   var isLoading = true.obs;
   var chatList = List<DatumChatList>();
+  var chatPersonList = List<DatumChatListPerson>();
   var userId;
   final box = GetStorage();
 
@@ -75,5 +77,20 @@ class ChatController extends GetxController {
     // TODO: implement onInit
     getScrollDown();
     super.onInit();
+  }
+
+  void fetchChatListPerson() async {
+    String userId = box.read('userId');
+    try {
+      isLoading(true);
+      var chatPersons = await ChatListAPi.viewChatListPerson(userId);
+      print('chatlist person $chatPersons');
+
+      if (chatPersons != null) {
+        chatPersonList.assignAll(chatPersons);
+      }
+    } finally {
+      isLoading(false);
+    }
   }
 }

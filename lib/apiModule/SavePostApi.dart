@@ -45,7 +45,7 @@ class SavePostApi{
 
     var baseUrl = GlobalConfiguration().get('base_url');
 
-    var response = await client.post('${baseUrl}deletePost.php', body:{'id':id});
+    var response = await client.post('${baseUrl}deletePost.php', body:{'pid':id});
 
     print('base url: $response');
 

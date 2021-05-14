@@ -33,10 +33,6 @@ class HomeScreen extends StatelessWidget {
                 child: Icon(Icons.search),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Icon(Icons.notifications),
-            ),
             SizedBox(width: 10)
           ],
           title: Text(

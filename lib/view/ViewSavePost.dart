@@ -84,7 +84,7 @@ class ViewSavePost extends StatelessWidget {
                                 ),
                                 GestureDetector(
                                   onTap: (){
-                                    savePostController.deleteSavePost(controller.postList[index].id);
+                                    savePostController.deleteSavePost(controller.postList[index].pid);
                                     // ignore: unnecessary_statements
                                     controller.postList.removeAt(index).id;
                                   },

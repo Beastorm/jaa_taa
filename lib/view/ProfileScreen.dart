@@ -60,7 +60,7 @@ class ProfileScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SizedBox(width: 20),
+                        SizedBox(width: 40),
                         Expanded(
                           child: RaisedButton(
                             color: Colors.red,
@@ -74,16 +74,7 @@ class ProfileScreen extends StatelessWidget {
                             },
                           ),
                         ),
-                        SizedBox(width: 20),
-                        Expanded(
-                          child: RaisedButton(
-                            color: Colors.amber,
-                            child: Text('Edit profile',
-                                style: TextStyle(color: AppColors.white)),
-                            onPressed: () {},
-                          ),
-                        ),
-                        SizedBox(width: 20),
+                        SizedBox(width: 40),
                       ],
                     )
                   ],
